@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathew & Anitha | Wedding Invitation</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+    font-family: 'Cormorant Garamond', Georgia, serif; 
+    color: #f8f0e6; 
+    background: #2a1e22;
+}
+
+/* FLORAL CINEMATIC HERO */
+.hero {
+  position: relative; height: 100vh; min-height: 560px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80');
+  background-size: cover; background-position: center;
+  filter: brightness(0.45) contrast(1.1) saturate(1.15);
+  transform: scale(1.06);
+  transition: transform 10s ease;
+}
+.hero-bg.loaded { transform: scale(1); }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(42,30,34,0.25) 0%, rgba(42,30,34,0.78) 75%);
+}
+.hero-content { position: relative; text-align: center; padding: 0 20px; z-index: 2; }
+
+.hero-eyebrow {
+  font-size: 11px; letter-spacing: 5px; color: #d4b88a;
+  text-transform: uppercase; margin-bottom: 18px; display: block;
+  font-family: 'EB Garamond', serif;
+}
+.hero-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.9rem, 1.9vw, 1.1rem);
+  font-weight: 300; font-style: italic;
+  color: rgba(255,245,235,0.85);
+  letter-spacing: 3px; margin-bottom: 12px; display: block;
+}
+.hero-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.4rem, 9.5vw, 6.2rem);
+  font-weight: 300; color: #d4b88a; line-height: 1.05;
+  margin-bottom: 12px; letter-spacing: 4px;
+}
+.hero-amp { color: #d4b88a; font-style: italic; }
+.hero-date {
+  font-size: 13.5px; letter-spacing: 6px; color: rgba(255,245,235,0.75);
+  text-transform: uppercase; margin-bottom: 40px;
+  font-family: 'EB Garamond', serif;
+}
+
+.divider-line { 
+  display: flex; align-items: center; justify-content: center; 
+  gap: 16px; margin-bottom: 36px; 
+}
+.divider-line::before, .divider-line::after { 
+  content: ''; flex: 1; max-width: 110px; height: 1px; 
+  background: linear-gradient(to right, transparent, #d4b88a, transparent); 
+}
+.divider-diamond { 
+  width: 9px; height: 9px; background: #d4b88a; 
+  transform: rotate(45deg); box-shadow: 0 0 8px rgba(212,184,138,0.6);
+}
+
+.countdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.cd-box {
+  background: rgba(42,30,34,0.55);
+  border: 1px solid rgba(212,184,138,0.45);
+  padding: 14px 20px; min-width: 78px; text-align: center;
+  backdrop-filter: blur(8px);
+  border-radius: 4px;
+}
+.cd-num { 
+  font-size: 2.1rem; font-weight: 300; color: #d4b88a; 
+  line-height: 1; display: block; 
+}
+.cd-lbl { 
+  font-size: 8.5px; letter-spacing: 3px; color: rgba(255,245,235,0.65); 
+  text-transform: uppercase; margin-top: 6px; display: block; 
+  font-family: 'EB Garamond', serif; 
+}
+
+/* PHOTO STRIP - Seamless */
+.photos-strip {
+  display: grid; 
+  grid-template-columns: 1fr 1.5fr 1fr;
+  height: 210px;
+  gap: 12px;
+  max-width: 1050px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.photo-cell { 
+  overflow: hidden; 
+  position: relative; 
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.photo-cell img {
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover;
+  filter: brightness(0.82) contrast(1.08);
+  transition: transform 0.9s ease, filter 0.6s ease;
+}
+.photo-cell:hover img { 
+  transform: scale(1.07); 
+  filter: brightness(1.05); 
+}
+.photo-caption {
+  position: absolute; 
+  bottom: 0; 
+  left: 0; 
+  right: 0;
+  background: linear-gradient(transparent, rgba(42,30,34,0.92));
+  padding: 24px 14px 12px;
+  font-size: 9px; 
+  letter-spacing: 3.5px; 
+  color: #d4b88a;
+  text-transform: uppercase; 
+  text-align: center;
+  font-family: 'EB Garamond', serif;
+}
+
+/* DARK SECTIONS */
+.section-dark {
+  background: #2a1e22; 
+  padding: 70px 20px; 
+  color: #f8f0e6;
+}
+
+/* WHITE SECTION - Only Holy Wedding */
+.section-light {
+  background: #f8f4f0; 
+  padding: 70px 20px; 
+  color: #2a1e22;
+}
+
+.eyebrow {
+  font-size: 9.5px; letter-spacing: 5px; color: #d4b88a;
+  text-transform: uppercase; text-align: center; display: block; margin-bottom: 12px;
+  font-family: 'EB Garamond', serif;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+  font-weight: 300; text-align: center; margin-bottom: 48px; letter-spacing: 1.5px;
+}
+
+/* EVENT CARDS */
+.events-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px; max-width: 760px; margin: 0 auto;
+}
+.event-card { 
+  overflow: hidden; border: 1px solid rgba(212,184,138,0.25); 
+  border-radius: 6px;
+}
+.event-card-img { height: 210px; overflow: hidden; }
+.event-card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.78) contrast(1.1);
+  transition: transform 0.8s ease;
+}
+.event-card:hover .event-card-img img { transform: scale(1.07); }
+.event-card-body { 
+  padding: 26px; 
+  border-top: 1px solid rgba(212,184,138,0.2); 
+}
+.section-dark .event-card-body { background: rgba(255,255,255,0.04); }
+.section-light .event-card-body { background: #fff; }
+
+.event-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem; font-weight: 400; margin-bottom: 8px;
+}
+.section-dark .event-name { color: #d4b88a; }
+.section-light .event-name { color: #8c5f3a; }
+
+.event-meta { 
+  font-size: 12.5px; letter-spacing: 1px; margin-bottom: 5px; 
+  font-family: 'EB Garamond', serif; 
+}
+.section-dark .event-meta { color: rgba(248,240,230,0.75); }
+.section-light .event-meta { color: #6b523a; }
+
+.map-link {
+  display: inline-flex; align-items: center; gap: 7px; margin-top: 16px;
+  font-size: 9.5px; letter-spacing: 3px; text-transform: uppercase;
+  color: #d4b88a; text-decoration: none; transition: all 0.3s;
+  font-family: 'EB Garamond', serif;
+}
+.map-link:hover { color: #f8e8d0; }
+
+/* PHOTO MOSAIC */
+.photo-mosaic {
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 170px 170px;
+  gap: 12px;
+  max-width: 760px; 
+  margin: 0 auto;
+}
+.mosaic-cell { overflow: hidden; border-radius: 6px; }
+.mosaic-cell.tall { grid-row: span 2; }
+.mosaic-cell img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.85) contrast(1.05);
+  transition: transform 0.8s ease;
+}
+.mosaic-cell:hover img { transform: scale(1.08); }
+
+/* FOOTER */
+.footer-w { 
+  background: #2a1e22; border-top: 1px solid rgba(212,184,138,0.3); 
+  padding: 52px 20px; text-align: center; 
+}
+.footer-names { 
+  font-family: 'Cormorant Garamond', serif; font-size: 1.85rem; 
+  font-weight: 300; color: #d4b88a; letter-spacing: 5px; margin-bottom: 14px; 
+}
+.footer-verse { 
+  font-family: 'Cormorant Garamond', serif; font-size: 1rem; 
+  font-style: italic; color: rgba(248,240,230,0.55); margin-bottom: 14px; 
+}
+.footer-sub { 
+  font-size: 9.5px; letter-spacing: 4px; text-transform: uppercase; 
+  color: rgba(248,240,230,0.35); font-family: 'EB Garamond', serif; 
+}
+
+@media (max-width: 520px) {
+  .photos-strip { 
+    grid-template-columns: 1fr 1fr; 
+    height: 170px; 
+    gap: 8px;
+  }
+  .photos-strip .photo-cell:last-child { display: none; }
+  
+  .photo-mosaic { 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 130px 130px 130px; 
+    gap: 10px;
+  }
+  .mosaic-cell.tall { grid-row: span 1; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-tagline">Together in bloom, forever entwined</span>
+    <span class="hero-eyebrow">With joyful hearts we invite you</span>
+    <h1 class="hero-names">Mathew <span class="hero-amp">&amp;</span> Anitha</h1>
+    <p class="hero-date">July 16, 2026 &nbsp;·&nbsp; Kerala</p>
+    <div class="divider-line"><div class="divider-diamond"></div></div>
+    <div class="countdown">
+      <div class="cd-box"><span class="cd-num" id="d">—</span><span class="cd-lbl">Days</span></div>
+      <div class="cd-box"><span class="cd-num" id="h">—</span><span class="cd-lbl">Hours</span></div>
+      <div class="cd-box"><span class="cd-num" id="m">—</span><span class="cd-lbl">Mins</span></div>
+      <div class="cd-box"><span class="cd-num" id="s">—</span><span class="cd-lbl">Secs</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PHOTO STRIP -->
+<div class="photos-strip">
+  <div class="photo-cell">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Floral wedding">
+    <div class="photo-caption">Floral Dreams</div>
+  </div>
+  <div class="photo-cell">
+    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="Romantic couple">
+    <div class="photo-caption">Eternal Love</div>
+  </div>
+  <div class="photo-cell">
+    <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80" alt="Wedding flowers">
+    <div class="photo-caption">Blossoms</div>
+  </div>
+</div>
+
+<!-- BETROTHAL & RECEPTION - Dark -->
+<div class="section-dark">
+  <span class="eyebrow">The Journey Begins</span>
+  <h2 class="section-title">Betrothal & Celebration</h2>
+  <div class="events-grid">
+    <div class="event-card">
+      <div class="event-card-img">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Church ceremony">
+      </div>
+      <div class="event-card-body">
+        <div class="event-name">Betrothal</div>
+        <div class="event-meta">July 11, 2026 &nbsp;·&nbsp; 5:30 PM</div>
+        <div class="event-meta">Christ the King Church</div>
+        <a class="map-link" href="https://www.google.com/maps/search/Christ+the+King+Church+Kerala" target="_blank">View location</a>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-card-img">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Reception">
+      </div>
+      <div class="event-card-body">
+        <div class="event-name">Reception</div>
+        <div class="event-meta">July 11, 2026 &nbsp;</div>
+        <div class="event-meta">Ann's International Centre</div>
+        <a class="map-link" href="https://www.google.com/maps/search/Ann%27s+International+Centre" target="_blank">View location</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOLY WEDDING - Only White Section -->
+<div class="section-light">
+  <span class="eyebrow">The Sacred Moment</span>
+  <h2 class="section-title">Holy Wedding</h2>
+  <div class="events-grid">
+    <div class="event-card">
+      <div class="event-card-img">
+        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" alt="Wedding altar">
+      </div>
+      <div class="event-card-body">
+        <div class="event-name">Wedding Ceremony and Reception</div>
+        <div class="event-meta">July 16, 2026 &nbsp;·&nbsp; 10:30 AM</div>
+        <div class="event-meta">St. Thomas old Church, Punnathura</div>
+        <a class="map-link" href="https://www.google.com/maps/search/St.+Thomas+Church+Kerala" target="_blank">View location</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY - Dark -->
+<div class="section-dark" style="padding-bottom:0;">
+  <span class="eyebrow">Captured Moments</span>
+  <h2 class="section-title">Moments of Love</h2>
+  <div class="photo-mosaic">
+    <div class="mosaic-cell tall">
+      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&h=780&q=80" alt="Bride">
+    </div>
+    <div class="mosaic-cell">
+      <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&h=370&q=80" alt="Rings">
+    </div>
+    <div class="mosaic-cell">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&h=370&q=80" alt="Floral">
+    </div>
+    <div class="mosaic-cell">
+      <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&h=370&q=80" alt="Couple">
+    </div>
+    <div class="mosaic-cell">
+      <img src="https://paradiseweddings.com/img1/containers/img/resorts/dreams-playa-esmeralda/bride-and-groom-on-the-beach-at-dreams-playa-esmeralda.jpeg/19e1945a511f343b902c62ab634c9d15.webp?auto=format&fit=crop&w=600&h=370&q=80" alt="Flowers">
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer-w">
+  <div class="footer-names">Mathew &amp; Anitha</div>
+  <div class="footer-verse">"Grow old with me, the best is yet to be."</div>
+  <div class="footer-sub">With love & blessings from our families &nbsp;·&nbsp; July 16, 2026 &nbsp;·&nbsp; Kerala</div>
+</div>
+
+<script>
+/* COUNTDOWN */
+const target = new Date("July 16, 2026 10:30:00").getTime();
+function updateClock() {
+  const diff = target - Date.now();
+  if (diff < 0) return;
+  document.getElementById("d").innerText = Math.floor(diff / 86400000);
+  document.getElementById("h").innerText = Math.floor((diff % 86400000) / 3600000);
+  document.getElementById("m").innerText = Math.floor((diff % 3600000) / 60000);
+  document.getElementById("s").innerText = Math.floor((diff % 60000) / 1000);
+}
+setInterval(updateClock, 1000); updateClock();
+
+/* HERO SLOW ZOOM */
+window.addEventListener("load", () => {
+  document.getElementById("heroBg").classList.add("loaded");
+});
+</script>
+</body>
+</html>
